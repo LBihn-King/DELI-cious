@@ -18,7 +18,7 @@ public class ReceiptFileManager {
     }
 
     private String getDateTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy_MM_dd-hh_mm_ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
         LocalDateTime localDateTime = LocalDateTime.now();
         return localDateTime.format(formatter);
     }
