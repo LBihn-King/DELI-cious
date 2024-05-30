@@ -61,7 +61,13 @@ public class UserInterface {
     }
 
     public void saucesList() {
-
+        System.out.println("""
+                1) Mayo
+                2) Mussstard
+                3) Ketchup
+                4) Ranch
+                5) Thousssand Issslandsss
+                6) Vinaigrette""");
     }
 
     public void sizeList() {
@@ -90,6 +96,7 @@ public class UserInterface {
             }
         } catch (Exception e) {
             System.out.println("Invalid input");
+            scanner.nextLine();
             homeScreen();
         }
     }
@@ -101,7 +108,7 @@ public class UserInterface {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    addSandwich();
+                    addSandwich(sandwich);
                     orderScreen();
                     break;
                 case 2:
@@ -131,18 +138,19 @@ public class UserInterface {
             }
         } catch (Exception e) {
             System.out.println("Invalid input");
+            scanner.nextLine();
             orderScreen();
         }
     }
 
-    public void addSandwich() {
+    public void addSandwich(Sandwich sandwich) {
         selectBread();
         selectSize();
         sandwich.setSize(size);
         selectMeat();
         selectCheese();
         selectToppings();
-        orderScreen();
+        order.addSandwichToOrder(sandwich);
     }
 
     public void selectBread() {
@@ -170,15 +178,10 @@ public class UserInterface {
             }
         } catch (Exception e) {
             System.out.println("Invalid input");
+            scanner.nextLine();
             homeScreen();
         }
     }
-
-
-    /*      switch (choice) {
-                case 1:
-            }
-    */
 
     public void selectSize() {
         System.out.println("Ssselect your sssize");
@@ -198,6 +201,7 @@ public class UserInterface {
             }
         } catch (Exception e) {
             System.out.println("Invalid input");
+            scanner.nextLine();
             homeScreen();
         }
     }
@@ -209,16 +213,16 @@ public class UserInterface {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    sandwich.setMeat("Steak");
+                    sandwich.setMeat("Sssteak");
                     break;
                 case 2:
                     sandwich.setMeat("Ham");
                     break;
                 case 3:
-                    sandwich.setMeat("Salami");
+                    sandwich.setMeat("Sssalami");
                     break;
                 case 4:
-                    sandwich.setMeat("Roast Beef");
+                    sandwich.setMeat("Roassst Beef");
                     break;
                 case 5:
                     sandwich.setMeat("Chicken");
@@ -231,8 +235,20 @@ public class UserInterface {
                     selectMeat();
                     break;
             }
+            System.out.println("Extra meat?");
+            System.out.println("1) Yesss\n2) No");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    sandwich.setExtraMeat(true);
+                    break;
+                case 2:
+                    sandwich.setExtraCheese(false);
+                    break;
+            }
         } catch (Exception e) {
             System.out.println("Invalid input");
+            scanner.nextLine();
             homeScreen();
         }
     }
@@ -244,16 +260,16 @@ public class UserInterface {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    sandwich.setBread("White");
+                    sandwich.setCheese("American");
                     break;
                 case 2:
-                    sandwich.setBread("Wheat");
+                    sandwich.setCheese("Provolone");
                     break;
                 case 3:
-                    sandwich.setBread("Rye");
+                    sandwich.setCheese("Cheddar");
                     break;
                 case 4:
-                    sandwich.setBread("Wrap");
+                    sandwich.setCheese("Ssswisss");
                     break;
                 default:
                     System.out.println("Invalid input");
@@ -262,13 +278,18 @@ public class UserInterface {
             }
             System.out.println("Extra cheese?");
             System.out.println("1) Yesss\n2) No");
+            choice = scanner.nextInt();
             switch (choice) {
                 case 1:
                     sandwich.setExtraCheese(true);
                     break;
+                case 2:
+                    sandwich.setExtraCheese(false);
+                    break;
             }
         } catch (Exception e) {
             System.out.println("Invalid input");
+            scanner.nextLine();
             homeScreen();
         }
     }
@@ -276,7 +297,73 @@ public class UserInterface {
     public void selectToppings() {
         System.out.println("Ssselect your toppingsss");
         toppingsList();
-        int choice = scanner.nextInt();
+        try {
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    sandwich.toppings.add("Lettuce");
+                    break;
+                case 2:
+                    sandwich.toppings.add("Peppersss");
+                    break;
+                case 3:
+                    sandwich.toppings.add("Onionsss");
+                    break;
+                case 4:
+                    sandwich.toppings.add("Tomatoesss");
+                    break;
+                case 5:
+                    sandwich.toppings.add("Jalapenosss");
+                    break;
+                case 6:
+                    sandwich.toppings.add("Cucumbersss");
+                    break;
+                case 7:
+                    sandwich.toppings.add("Picklesss");
+                    break;
+                case 8:
+                    sandwich.toppings.add("Guacamole");
+                    break;
+                case 9:
+                    sandwich.toppings.add("Mushroomsss");
+                    break;
+                case 0:
+                    sandwich.toppings.add("No toppings");
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    selectToppings();
+                    break;
+            }
+            toppingsRedirect();
+        } catch (Exception e) {
+            System.out.println("Invalid input");
+            scanner.nextLine();
+            selectToppings();
+        }
+    }
+
+    public void toppingsRedirect(){
+        System.out.println("Add another topping?\n1) Yesss\n2) No");
+        try{
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    selectToppings();
+                    break;
+                case 2:
+
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    toppingsRedirect();
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input");
+            scanner.nextLine();
+            toppingsRedirect();
+        }
     }
 
     public void addDrink() {
@@ -312,6 +399,7 @@ public class UserInterface {
             }
         } catch (Exception e) {
             System.out.println("Invalid input");
+            scanner.nextLine();
             addSide();
         }
     }

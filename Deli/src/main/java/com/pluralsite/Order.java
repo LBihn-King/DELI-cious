@@ -75,7 +75,7 @@ public class Order {
 
     public void addChipsToOrder() {
         if (hasChips) {
-            String item = "Chips\t" + "$1.50";
+            String item = "Chips\t\t\t\t" + "$1.50";
             items.add(item);
             setTotal(getTotal() + 1.50f);
         }
@@ -84,10 +84,15 @@ public class Order {
     public void addDrinkToOrder(Drink drink) {
         if (hasDrink) {
             drink.pricing(drink);
-            String item = String.format("Drink\t" + "$%.2f", drink.getPrice());
+            String item = String.format("Drink\t\t\t\t" + "$%.2f", drink.getPrice());
             items.add(item);
             setTotal(getTotal() + drink.getPrice());
         }
+    }
+
+    public void addSandwichToOrder(Sandwich sandwich) {
+        items.add(String.valueOf(sandwich));
+        setTotal(getTotal() + sandwich.getSandwichTotal());
     }
 
 

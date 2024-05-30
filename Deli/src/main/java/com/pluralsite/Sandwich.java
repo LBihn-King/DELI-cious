@@ -29,7 +29,7 @@ public class Sandwich {
         this.cheesePrice = cheesePrice;
         this.extraMeatPrice = extraMeatPrice;
         this.extraCheesePrice = extraCheesePrice;
-        this.toppings = toppings;
+        this.toppings = new ArrayList<String>();
     }
 
     public Sandwich() {
@@ -44,7 +44,7 @@ public class Sandwich {
         this.cheesePrice = cheesePrice;
         this.extraMeatPrice = extraMeatPrice;
         this.extraCheesePrice = extraCheesePrice;
-        this.toppings = toppings;
+        this.toppings = new ArrayList<String>();
     }
 
     public String getBread() {
@@ -139,6 +139,8 @@ public class Sandwich {
         return toppings;
     }
 
+
+
     public void setToppings(ArrayList<String> toppings) {
         this.toppings = toppings;
     }
@@ -147,52 +149,69 @@ public class Sandwich {
     public String toString() {
         String output;
         if (extraMeat && extraCheese) {
-        output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
-                meat + '\n' +
-                cheese + '\n' +
-                "Extra Meat"+ '\t' + extraMeatPrice + '\n' +
-                "Extra Cheese" + '\t' + extraCheesePrice + '\n' +
-                toppings;
+            output = """
+                    %s %s Sandwich    $%.2f
+                    %s
+                    %s
+                    Extra Meat        +%.2f
+                    Extra Cheese      +%.2f
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, extraCheesePrice, toppings);
         } else if (extraMeat) {
-            output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
-                    meat + '\n' +
-                    cheese + '\n' +
-                    "Extra Meat" + '\t' + extraMeatPrice + '\n' +
-                    toppings;
+            output = """
+                    %s %s Sandwich    $%.2f
+                    %s
+                    %s
+                    Extra Meat        +%.2f
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, toppings);
         } else if (extraCheese) {
-            output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
-                    meat + '\n' +
-                    cheese + '\n' +
-                    "Extra Cheese" + '\t' + extraCheesePrice + '\n' +
-                    toppings;
+            output = """
+                    %s %s Sandwich    $%.2f
+                    %s
+                    %s
+                    Extra Cheese      +%.2f
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraCheesePrice, toppings);
         } else {
-            output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
-                    meat + '\n' +
-                    cheese + '\n' +
-                    toppings;
+            output = """
+                    %s %s Sandwich    $%.2f
+                    %s
+                    %s
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, toppings);
         }
         return output;
     }
 
-    public void pricing(Sandwich sandwich) {
-        if (sandwich.getSize() == 'S') {
-            sandwich.setBasePrice(5.50f);
-            sandwich.setMeatPrice(1.00f);
-            sandwich.setCheesePrice(0.75f);
-            sandwich.setExtraMeatPrice(0.50f);
-            sandwich.setExtraCheesePrice(0.30f);
-        } else if (sandwich.getSize() == 'M') {
-            sandwich.setBasePrice(7.00f);
-            sandwich.setMeatPrice(2.00f);
-            sandwich.setCheesePrice(2.25f);
-            sandwich.setExtraMeatPrice(1.00f);
-            sandwich.setExtraCheesePrice(0.60f);
-        } else if (sandwich.getSize() == 'L') {
-            sandwich.setBasePrice(8.50f);
-            sandwich.setMeatPrice(3.00f);
-            sandwich.setCheesePrice(2.25f);
-            sandwich.setExtraMeatPrice(1.50f);
-            sandwich.setExtraCheesePrice(0.90f);
+    public void pricing() {
+        if (getSize() == 'S') {
+            setBasePrice(5.50f);
+            setMeatPrice(1.00f);
+            setCheesePrice(0.75f);
+            setExtraMeatPrice(0.50f);
+            setExtraCheesePrice(0.30f);
+        } else if (getSize() == 'M') {
+            setBasePrice(7.00f);
+            setMeatPrice(2.00f);
+            setCheesePrice(2.25f);
+            setExtraMeatPrice(1.00f);
+            setExtraCheesePrice(0.60f);
+        } else if (getSize() == 'L') {
+            setBasePrice(8.50f);
+            setMeatPrice(3.00f);
+            setCheesePrice(2.25f);
+            setExtraMeatPrice(1.50f);
+            setExtraCheesePrice(0.90f);
+        }
+    }
+
+    public double getSandwichTotal() {
+        pricing();
+        if (extraMeat && extraCheese) {
+            return basePrice + meatPrice + cheesePrice + extraMeatPrice +extraCheesePrice;
+        } else if (extraMeat) {
+            return basePrice + meatPrice + cheesePrice + extraMeatPrice;
+        } else if (extraCheese) {
+            return basePrice + meatPrice + cheesePrice + extraCheesePrice;
+        } else {
+            return basePrice + meatPrice + cheesePrice;
         }
     }
 }
