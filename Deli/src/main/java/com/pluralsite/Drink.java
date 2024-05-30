@@ -30,7 +30,7 @@ public class Drink {
         this.price = price;
     }
 
-    public void pricing(Drink drink) {
+    public void pricing(Drink drink) {//set prices according to size
         if (drink.getSize() == 'S') {
             drink.setPrice(2.00f);
         } else if (drink.getSize() == 'M') {

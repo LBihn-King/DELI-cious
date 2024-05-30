@@ -16,8 +16,9 @@ public class Sandwich {
     double extraMeatPrice;
     double extraCheesePrice;
     ArrayList<String> toppings;
+    ArrayList<String> sauces;
 
-    public Sandwich(String bread, char size, String meat, String cheese, boolean extraMeat, boolean extraCheese, double basePrice, double meatPrice, double cheesePrice, double extraMeatPrice, double extraCheesePrice, ArrayList<String> toppings) {
+    public Sandwich(String bread, char size, String meat, String cheese, boolean extraMeat, boolean extraCheese, double basePrice, double meatPrice, double cheesePrice, double extraMeatPrice, double extraCheesePrice, ArrayList<String> toppings, ArrayList<String> sauces) {
         this.bread = bread;
         this.size = size;
         this.meat = meat;
@@ -30,6 +31,7 @@ public class Sandwich {
         this.extraMeatPrice = extraMeatPrice;
         this.extraCheesePrice = extraCheesePrice;
         this.toppings = new ArrayList<String>();
+        this.sauces = new ArrayList<String>();
     }
 
     public Sandwich() {
@@ -45,6 +47,7 @@ public class Sandwich {
         this.extraMeatPrice = extraMeatPrice;
         this.extraCheesePrice = extraCheesePrice;
         this.toppings = new ArrayList<String>();
+        this.sauces = new ArrayList<String>();
     }
 
     public String getBread() {
@@ -139,10 +142,16 @@ public class Sandwich {
         return toppings;
     }
 
-
-
     public void setToppings(ArrayList<String> toppings) {
         this.toppings = toppings;
+    }
+
+    public ArrayList<String> getSauces() {
+        return sauces;
+    }
+
+    public void setSauces(ArrayList<String> sauces) {
+        this.sauces = sauces;
     }
 
     @Override
@@ -155,32 +164,36 @@ public class Sandwich {
                     %s
                     Extra Meat        +%.2f
                     Extra Cheese      +%.2f
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, extraCheesePrice, toppings);
+                    %s
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, extraCheesePrice, toppings, sauces);
         } else if (extraMeat) {
             output = """
                     %s %s Sandwich    $%.2f
                     %s
                     %s
                     Extra Meat        +%.2f
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, toppings);
+                    %s
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, toppings, sauces);
         } else if (extraCheese) {
             output = """
                     %s %s Sandwich    $%.2f
                     %s
                     %s
                     Extra Cheese      +%.2f
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraCheesePrice, toppings);
+                    %s
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraCheesePrice, toppings, sauces);
         } else {
             output = """
                     %s %s Sandwich    $%.2f
                     %s
                     %s
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, toppings);
+                    %s
+                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, toppings, sauces);
         }
         return output;
     }
 
-    public void pricing() {
+    public void pricing() {//set prices according to size
         if (getSize() == 'S') {
             setBasePrice(5.50f);
             setMeatPrice(1.00f);
@@ -202,7 +215,7 @@ public class Sandwich {
         }
     }
 
-    public double getSandwichTotal() {
+    public double getSandwichTotal() {//get the total cost of the sandwich
         pricing();
         if (extraMeat && extraCheese) {
             return basePrice + meatPrice + cheesePrice + extraMeatPrice +extraCheesePrice;

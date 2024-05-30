@@ -4,10 +4,10 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class UserInterface {
-    Scanner scanner = new Scanner(System.in);
-    Sandwich sandwich = new Sandwich();
-    Order order = new Order();
-    char size;
+    private Scanner scanner = new Scanner(System.in);
+    private Sandwich sandwich = new Sandwich();
+    private Order order = new Order();
+    private char size;
 
     public void optionsList() {
         System.out.println("""
@@ -57,7 +57,7 @@ public class UserInterface {
                 7) Picklesss
                 8) Guacamole
                 9) Mushroomsss
-                0) Back""");
+                0) None""");
     }
 
     public void saucesList() {
@@ -328,14 +328,58 @@ public class UserInterface {
                     sandwich.toppings.add("Mushroomsss");
                     break;
                 case 0:
-                    sandwich.toppings.add("No toppings");
+                    sandwich.toppings.add("N/A");
                     break;
                 default:
                     System.out.println("Invalid input");
                     selectToppings();
                     break;
             }
-            toppingsRedirect();
+            if (!(choice == 0)) {
+                toppingsRedirect();
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input");
+            scanner.nextLine();
+            selectToppings();
+        }
+    }
+
+    public void selectSauces() {
+        System.out.println("Ssselect your sssauce");
+        saucesList();
+        try {
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    sandwich.sauces.add("Mayo");
+                    break;
+                case 2:
+                    sandwich.sauces.add("Mussstard");
+                    break;
+                case 3:
+                    sandwich.sauces.add("Ketchup");
+                    break;
+                case 4:
+                    sandwich.sauces.add("Ranch");
+                    break;
+                case 5:
+                    sandwich.sauces.add("Thousssand Issslandsss");
+                    break;
+                case 6:
+                    sandwich.sauces.add("Vinaigrette");
+                    break;
+                case 0:
+                    sandwich.sauces.add("N/A");
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    selectToppings();
+                    break;
+            }
+            if (!(choice == 0)) {
+                saucesRedirect();
+            }
         } catch (Exception e) {
             System.out.println("Invalid input");
             scanner.nextLine();
@@ -352,7 +396,7 @@ public class UserInterface {
                     selectToppings();
                     break;
                 case 2:
-
+                    selectSauces();
                     break;
                 default:
                     System.out.println("Invalid input");
@@ -363,6 +407,28 @@ public class UserInterface {
             System.out.println("Invalid input");
             scanner.nextLine();
             toppingsRedirect();
+        }
+    }
+
+    public void saucesRedirect(){
+        System.out.println("Add another sssauce?\n1) Yesss\n2) No");
+        try{
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    selectSauces();
+                    break;
+                case 2:
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    saucesRedirect();
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input");
+            scanner.nextLine();
+            saucesRedirect();
         }
     }
 
@@ -405,11 +471,36 @@ public class UserInterface {
     }
 
     public void checkout () {
+        displayOrder();
+        System.out.println("Confirm?\n1) Yes\n2) Cancel order.");
+        try {
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    ReceiptFileManager receiptFileManager = new ReceiptFileManager(order);
+                    receiptFileManager.saveReceipt();
+                    cancelOrder();
+                    break;
+                case 2:
+                    cancelOrder();
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    saucesRedirect();
+                    break;
+            }
 
+        } catch (Exception e) {
+            System.out.println("Invalid input");
+            scanner.nextLine();
+            checkout();
+        }
     }
 
     public void cancelOrder() {
-
+        order.setTotal(0.00f);
+        order.items.clear();
+        homeScreen();
     }
 
     public void displayOrder() {

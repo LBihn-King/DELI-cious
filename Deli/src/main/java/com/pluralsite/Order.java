@@ -6,7 +6,7 @@ public class Order {
     private boolean hasChips;
     private boolean hasApple;
     private boolean hasDrink;
-    private ArrayList<String> items;
+    ArrayList<String> items;
     private double total;
 
     public Order(boolean hasChips, boolean hasApple, boolean hasDrink, ArrayList<String> items, double total) {
@@ -67,7 +67,7 @@ public class Order {
 
     public void addAppleToOrder() {
         if (hasApple) {
-            String item = "Apple\t" + "$6.66";
+            String item = "Apple\t\t\t\t" + "$6.66";
             items.add(item);
             setTotal(getTotal() + 6.66f);
         }

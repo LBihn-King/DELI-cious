@@ -1,0 +1,8 @@
+S White Sandwich    $8.05
+Sssteak
+American
+Extra Meat        +0.50
+Extra Cheese      +0.30
+[Lettuce, Lettuce, Peppersss]
+[Mussstard, Ketchup]
+Total: $8.05
