@@ -9,11 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 
 public class ReceiptFileManager {
-    //private String currentDateTime;
     private Order order;
 
     public ReceiptFileManager(Order order){
-        //this.currentDateTime=getDateTime();
         this.order=order;
     }
 
