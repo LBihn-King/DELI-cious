@@ -60,6 +60,10 @@ public class UserInterface {
                 0) Back""");
     }
 
+    public void saucesList() {
+
+    }
+
     public void sizeList() {
         System.out.println("""
                 1) Sssmall
@@ -113,7 +117,8 @@ public class UserInterface {
                     orderScreen();
                     break;
                 case 5:
-                    testPrint();
+                    displayOrder();
+                    orderScreen();
                     return;
                 case 0:
                     cancelOrder();
@@ -133,6 +138,7 @@ public class UserInterface {
     public void addSandwich() {
         selectBread();
         selectSize();
+        sandwich.setSize(size);
         selectMeat();
         selectCheese();
         selectToppings();
@@ -144,11 +150,35 @@ public class UserInterface {
         breadList();
         try{
             int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    sandwich.setBread("White");
+                    break;
+                case 2:
+                    sandwich.setBread("Wheat");
+                    break;
+                case 3:
+                    sandwich.setBread("Rye");
+                    break;
+                case 4:
+                    sandwich.setBread("Wrap");
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    selectBread();
+                    break;
+            }
         } catch (Exception e) {
             System.out.println("Invalid input");
             homeScreen();
         }
     }
+
+
+    /*      switch (choice) {
+                case 1:
+            }
+    */
 
     public void selectSize() {
         System.out.println("Ssselect your sssize");
@@ -175,13 +205,72 @@ public class UserInterface {
     public void selectMeat() {
         System.out.println("Ssselect your meat");
         meatsList();
-        int choice = scanner.nextInt();
+        try{
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    sandwich.setMeat("Steak");
+                    break;
+                case 2:
+                    sandwich.setMeat("Ham");
+                    break;
+                case 3:
+                    sandwich.setMeat("Salami");
+                    break;
+                case 4:
+                    sandwich.setMeat("Roast Beef");
+                    break;
+                case 5:
+                    sandwich.setMeat("Chicken");
+                    break;
+                case 6:
+                    sandwich.setMeat("Bacon");
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    selectMeat();
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input");
+            homeScreen();
+        }
     }
 
     public void selectCheese() {
         System.out.println("Ssselect your cheese");
         cheeseList();
-        int choice = scanner.nextInt();
+        try{
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    sandwich.setBread("White");
+                    break;
+                case 2:
+                    sandwich.setBread("Wheat");
+                    break;
+                case 3:
+                    sandwich.setBread("Rye");
+                    break;
+                case 4:
+                    sandwich.setBread("Wrap");
+                    break;
+                default:
+                    System.out.println("Invalid input");
+                    selectBread();
+                    break;
+            }
+            System.out.println("Extra cheese?");
+            System.out.println("1) Yesss\n2) No");
+            switch (choice) {
+                case 1:
+                    sandwich.setExtraCheese(true);
+                    break;
+            }
+        } catch (Exception e) {
+            System.out.println("Invalid input");
+            homeScreen();
+        }
     }
 
     public void selectToppings() {
@@ -235,13 +324,13 @@ public class UserInterface {
 
     }
 
-    public void testPrint() {
+    public void displayOrder() {
         Iterator<String> orderIterator = order.getItems().iterator();
         String output;
         while (orderIterator.hasNext()) {
             output = String.valueOf(orderIterator.next());
             System.out.println(output);
         }
-        System.out.printf("Total: $%.2f", order.getTotal());
+        System.out.printf("Total: $%.2f\n", order.getTotal());
     }
 }

@@ -143,6 +143,37 @@ public class Sandwich {
         this.toppings = toppings;
     }
 
+    @Override
+    public String toString() {
+        String output;
+        if (extraMeat && extraCheese) {
+        output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
+                meat + '\n' +
+                cheese + '\n' +
+                "Extra Meat"+ '\t' + extraMeatPrice + '\n' +
+                "Extra Cheese" + '\t' + extraCheesePrice + '\n' +
+                toppings;
+        } else if (extraMeat) {
+            output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
+                    meat + '\n' +
+                    cheese + '\n' +
+                    "Extra Meat" + '\t' + extraMeatPrice + '\n' +
+                    toppings;
+        } else if (extraCheese) {
+            output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
+                    meat + '\n' +
+                    cheese + '\n' +
+                    "Extra Cheese" + '\t' + extraCheesePrice + '\n' +
+                    toppings;
+        } else {
+            output =  size + " " + bread + " Sandwich\t" + basePrice + '\n' +
+                    meat + '\n' +
+                    cheese + '\n' +
+                    toppings;
+        }
+        return output;
+    }
+
     public void pricing(Sandwich sandwich) {
         if (sandwich.getSize() == 'S') {
             sandwich.setBasePrice(5.50f);

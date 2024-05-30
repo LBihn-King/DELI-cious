@@ -57,11 +57,11 @@ public class Order {
         this.total = total;
     }
 
-    public ArrayList getItems() {
+    public ArrayList<String> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList items) {
+    public void setItems(ArrayList<String> items) {
         this.items = items;
     }
 
@@ -72,6 +72,7 @@ public class Order {
             setTotal(getTotal() + 6.66f);
         }
     }
+
     public void addChipsToOrder() {
         if (hasChips) {
             String item = "Chips\t" + "$1.50";
@@ -83,7 +84,7 @@ public class Order {
     public void addDrinkToOrder(Drink drink) {
         if (hasDrink) {
             drink.pricing(drink);
-            String item = "Drink\t" + "$" + drink.getPrice();
+            String item = String.format("Drink\t" + "$%.2f", drink.getPrice());
             items.add(item);
             setTotal(getTotal() + drink.getPrice());
         }
