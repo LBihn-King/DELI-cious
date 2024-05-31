@@ -31,7 +31,7 @@ This is a program that creates an interface for a sandwich shop.
 
 ![image](https://github.com/LBihn-King/DELI-cious/assets/166444171/88cd86e3-c273-4129-b980-12576b9fc19b)
 
-something i enjoyed was the formatting of the toString
+Something I enjoyed was the formatting of the toString
 
 ![image](https://github.com/LBihn-King/DELI-cious/assets/166444171/b93ca4aa-0f48-4686-b448-6139eb1d98d6)
 
