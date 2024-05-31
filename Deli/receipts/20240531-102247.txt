@@ -1,0 +1,12 @@
+M Wheat Sandwich    $12.85
+Ham
+American
+Extra Meat        +1.00
+Extra Cheese      +0.60
+[Lettuce, Lettuce, Peppersss]
+[Mayo, Mayo, Mussstard]
+Drink				$3.00
+Apple				$6.66
+Chips				$1.50
+
+Total: $24.01

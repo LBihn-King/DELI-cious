@@ -1,0 +1,12 @@
+S White Sandwich    $8.05
+Sssteak
+American
+Extra Meat        +0.50
+Extra Cheese      +0.30
+[Lettuce, Lettuce, Peppersss]
+[Mayo, Mussstard]
+Drink				$2.00
+Apple				$6.66
+Chips				$1.50
+
+Total: $18.21
