@@ -67,7 +67,7 @@ public class Order {
 
     public void addAppleToOrder() {
         if (hasApple) {
-            String item = "Apple\t\t\t\t" + "$6.66";
+            String item = "Apple\t\t\t\t" + "$6.66\n";
             items.add(item);
             setTotal(getTotal() + 6.66f);
         }
@@ -75,7 +75,7 @@ public class Order {
 
     public void addChipsToOrder() {
         if (hasChips) {
-            String item = "Chips\t\t\t\t" + "$1.50";
+            String item = "Chips\t\t\t\t" + "$1.50\n";
             items.add(item);
             setTotal(getTotal() + 1.50f);
         }
@@ -84,7 +84,7 @@ public class Order {
     public void addDrinkToOrder(Drink drink) {
         if (hasDrink) {
             drink.pricing(drink);
-            String item = String.format("Drink\t\t\t\t" + "$%.2f", drink.getPrice());
+            String item = String.format("Drink\t\t\t\t" + "$%.2f\n", drink.getPrice());
             items.add(item);
             setTotal(getTotal() + drink.getPrice());
         }

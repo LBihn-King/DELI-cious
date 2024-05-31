@@ -165,7 +165,7 @@ public class Sandwich {
                     Extra Meat        +%.2f
                     Extra Cheese      +%.2f
                     %s
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, extraCheesePrice, toppings, sauces);
+                    %s\n""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, extraCheesePrice, toppings, sauces);
         } else if (extraMeat) {
             output = """
                     %s %s Sandwich    $%.2f
@@ -173,7 +173,7 @@ public class Sandwich {
                     %s
                     Extra Meat        +%.2f
                     %s
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, toppings, sauces);
+                    %s\n""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraMeatPrice, toppings, sauces);
         } else if (extraCheese) {
             output = """
                     %s %s Sandwich    $%.2f
@@ -181,14 +181,14 @@ public class Sandwich {
                     %s
                     Extra Cheese      +%.2f
                     %s
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraCheesePrice, toppings, sauces);
+                    %s\n""".formatted(size, bread, getSandwichTotal(), meat, cheese, extraCheesePrice, toppings, sauces);
         } else {
             output = """
                     %s %s Sandwich    $%.2f
                     %s
                     %s
                     %s
-                    %s""".formatted(size, bread, getSandwichTotal(), meat, cheese, toppings, sauces);
+                    %s\n""".formatted(size, bread, getSandwichTotal(), meat, cheese, toppings, sauces);
         }
         return output;
     }
